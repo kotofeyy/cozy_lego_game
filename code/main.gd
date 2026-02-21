@@ -2,23 +2,26 @@ extends Node3D
 
 @onready var camera_3d: Camera3D = $Camera3D
 
+#region вращение камеры
 var rotation_speed := 0.01
 var distance := 10.0
 var zoom_speed = 1.0
 var yaw := 0.0
 var pitch := 0.0
+#endregion
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	
 	if Input.is_action_just_released("ui_scroll_up"):
 		distance -= zoom_speed
 		_update_camera_position()
@@ -27,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		distance += zoom_speed
 		_update_camera_position()
 
-	if event is InputEventMouseMotion and Input.is_action_pressed("mouse_action"):
+	if event is InputEventMouseMotion and Input.is_action_pressed("mouse_middle_action"):
 		# Двигаем мышь → вращаем вокруг центра
 		yaw -= event.relative.x * rotation_speed
 		pitch += event.relative.y * rotation_speed
@@ -36,7 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
 
 		_update_camera_position()
-
 
 
 func _update_camera_position():

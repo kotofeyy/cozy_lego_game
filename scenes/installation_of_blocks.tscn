@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d1j2gh2xldmj"]
+
+[ext_resource type="Script" uid="uid://b470dfphpj4ds" path="res://code/installation_of_blocks.gd" id="1_saun3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_saun3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_saun3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saun3"]
+albedo_color = Color(0.99999994, 0.27456066, 0.7795257, 1)
+
+[node name="InstallationOfBlocks" type="Node3D" unique_id=377349631]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_saun3")
+
+[node name="Tiles" type="StaticBody3D" parent="." unique_id=993313721 groups=["tiles"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tiles" unique_id=575299608]
+shape = SubResource("BoxShape3D_saun3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tiles" unique_id=29934719]
+mesh = SubResource("BoxMesh_saun3")
+surface_material_override/0 = SubResource("StandardMaterial3D_saun3")
