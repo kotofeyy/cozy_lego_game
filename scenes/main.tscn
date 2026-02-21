@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c8r3tlvmioogc"]
+
+[ext_resource type="Script" uid="uid://wl18hnbefb5o" path="res://code/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cnl7hrvarjc32" path="res://code/gizmo.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dnugijhfoy545" path="res://code/grid.gd" id="3_sugp2"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o5qli"]
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_jyhfs"]
+
+[node name="Main" type="Node3D" unique_id=504724357]
+script = ExtResource("1_0wfyh")
+
+[node name="Gizmo" type="MeshInstance3D" parent="." unique_id=267778524]
+mesh = SubResource("ImmediateMesh_o5qli")
+script = ExtResource("1_o5qli")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1047301828]
+environment = SubResource("Environment_sugp2")
+
+[node name="Grid" type="MeshInstance3D" parent="." unique_id=1379704654]
+mesh = SubResource("ImmediateMesh_jyhfs")
+script = ExtResource("3_sugp2")
