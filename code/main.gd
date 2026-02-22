@@ -2,12 +2,13 @@ extends Node3D
 
 @onready var camera_3d: Camera3D = $Camera3D
 
+
 #region вращение камеры
 var rotation_speed := 0.01
 var distance := 10.0
 var zoom_speed = 1.0
-var yaw := 0.0
-var pitch := 0.0
+var yaw := -0.8
+var pitch := 0.7
 #endregion
 
 
@@ -34,10 +35,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Двигаем мышь → вращаем вокруг центра
 		yaw -= event.relative.x * rotation_speed
 		pitch += event.relative.y * rotation_speed
-
+		
 		# Ограничим угол, чтобы не переворачивалась камера
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
-
+		print("yaw - ", yaw)
+		print('pitch - ', pitch)
 		_update_camera_position()
 
 
@@ -54,3 +56,11 @@ func _update_camera_position():
 
 	camera_3d.position = target + offset
 	camera_3d.look_at(target)
+
+
+func _on_tiles_button_pressed() -> void:
+	GlobalEvents.change_block.emit(ItemTypes.type.TILES_BASE)
+
+
+func _on_chair_button_pressed() -> void:
+	GlobalEvents.change_block.emit(ItemTypes.type.CHAIR_BASE)

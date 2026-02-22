@@ -15,6 +15,10 @@ run/main_scene="uid://c8r3tlvmioogc"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalEvents="*uid://chy532ilwq87m"
+
 [input]
 
 mouse_action={
