@@ -5,10 +5,10 @@ extends Node3D
 
 #region вращение камеры
 var rotation_speed := 0.01
-var distance := 10.0
+var distance := 15.0
 var zoom_speed = 1.0
-var yaw := -0.8
-var pitch := 0.7
+var yaw := -2.3
+var pitch := 0.6
 #endregion
 
 

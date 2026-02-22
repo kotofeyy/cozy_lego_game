@@ -77,20 +77,17 @@ func get_mouse_3d_pos():
 		
 		collider = result.collider
 
-		# Сдвигаем позицию на половину высоты ВДОЛЬ нормали
-		# Так блок всегда встанет ПОВЕРХ грани, а не внутрь
 		var shape = current_block.get_node("CollisionShape3D").shape
 		var height = shape.size.y
 		final_pos = hit_pos + (hit_normal * height * 0.5)
-		var grid_y = 0.2
+		var grid_y = 0.1
 
-		var surface_y = snapped(hit_pos.y, grid_y)
+	
 
 		final_pos.x = snapped(final_pos.x, 1.0)
 		final_pos.z = snapped(final_pos.z, 1.0)
-		final_pos.y = hit_pos.y
-		#final_pos.y = surface_y + height * 0.5
-		#final_pos.y = hit_pos.y + height * 0.5
+		#final_pos.y = hit_pos.y
+		final_pos.y = snapped(hit_pos.y, grid_y)
 	
 		
 		
