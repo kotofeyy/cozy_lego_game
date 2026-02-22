@@ -2,22 +2,23 @@
 
 [ext_resource type="Script" uid="uid://b470dfphpj4ds" path="res://code/installation_of_blocks.gd" id="1_saun3"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_saun3"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_saun3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saun3"]
-albedo_color = Color(0.99999994, 0.27456066, 0.7795257, 1)
+albedo_color = Color(0.98490447, 0.6951629, 0.80758876, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8c57"]
 
 [node name="InstallationOfBlocks" type="Node3D" unique_id=377349631]
-transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_saun3")
 
-[node name="Tiles" type="StaticBody3D" parent="." unique_id=993313721 groups=["tiles"]]
+[node name="Tiles" type="StaticBody3D" parent="." unique_id=1166387570 groups=["tiles"]]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tiles" unique_id=575299608]
-shape = SubResource("BoxShape3D_saun3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Tiles" unique_id=29934719]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tiles" unique_id=1191100176]
 mesh = SubResource("BoxMesh_saun3")
 surface_material_override/0 = SubResource("StandardMaterial3D_saun3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tiles" unique_id=1142612742]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_j8c57")
