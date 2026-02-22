@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b65tqwhmoa62e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdrar"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uxtoc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmuhv"]
+albedo_color = Color(6.738305e-07, 0.29554427, 0.41360614, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pvg84"]
+
+[node name="TableBase" type="StaticBody3D" unique_id=815398388 groups=["placeable", "table_base"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2090906886]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.3996731, 0.50017285, 0)
+shape = SubResource("BoxShape3D_mdrar")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1675895320]
+transform = Transform3D(2, 0, 0, 0, 0.2, 0, 0, 0, 1, -0.3996731, 0.9001727, 0)
+mesh = SubResource("BoxMesh_uxtoc")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmuhv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1742217190]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.5003269, 0.50017285, 0.4)
+mesh = SubResource("BoxMesh_pvg84")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmuhv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1844115455]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.5003269, 0.50017285, -0.4)
+mesh = SubResource("BoxMesh_pvg84")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmuhv")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1322074169]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -1.2996731, 0.50017285, 0.4)
+mesh = SubResource("BoxMesh_pvg84")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmuhv")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1274915181]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -1.2996731, 0.50017285, -0.4)
+mesh = SubResource("BoxMesh_pvg84")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmuhv")

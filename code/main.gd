@@ -45,8 +45,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _update_camera_position():
 	# Центр вокруг которого вращаем
-	var target = Vector3.ZERO
-
+	#var target = Vector3.ZERO
+	var target = Vector3(2.0, 0.0, 2.0)
 	# Считаем позицию камеры по углам yaw/pitch
 	var offset = Vector3(
 		distance * cos(pitch) * sin(yaw),
@@ -64,3 +64,7 @@ func _on_tiles_button_pressed() -> void:
 
 func _on_chair_button_pressed() -> void:
 	GlobalEvents.change_block.emit(ItemTypes.type.CHAIR_BASE)
+
+
+func _on_table_button_pressed() -> void:
+	GlobalEvents.change_block.emit(ItemTypes.type.TABLE_BASE)

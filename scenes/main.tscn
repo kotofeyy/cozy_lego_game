@@ -9,7 +9,7 @@
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 background_mode = 1
-background_color = Color(1, 1, 1, 1)
+background_color = Color(0.60613686, 0.7824236, 0.56922394, 1)
 ssao_enabled = true
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_jyhfs"]
@@ -20,32 +20,6 @@ ssao_enabled = true
 
 [node name="Main" type="Node3D" unique_id=504724357]
 script = ExtResource("1_0wfyh")
-
-[node name="Gizmo" type="MeshInstance3D" parent="." unique_id=267778524]
-visible = false
-mesh = SubResource("ImmediateMesh_o5qli")
-script = ExtResource("1_o5qli")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1047301828]
-transform = Transform3D(1, 0, 0, 0, 0.7880108, 0.6156615, 0, -0.6156615, 0.7880108, 0.005, 2.315, 3.62)
-environment = SubResource("Environment_sugp2")
-
-[node name="Grid" type="MeshInstance3D" parent="." unique_id=1379704654]
-visible = false
-mesh = SubResource("ImmediateMesh_jyhfs")
-script = ExtResource("3_sugp2")
-
-[node name="BaseFloor" type="StaticBody3D" parent="." unique_id=311128667]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseFloor" unique_id=467028243]
-transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
-shape = SubResource("BoxShape3D_sugp2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseFloor" unique_id=1391922154]
-transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
-mesh = SubResource("BoxMesh_jyhfs")
-
-[node name="InstallationOfBlocks" parent="." unique_id=377349631 instance=ExtResource("4_jyhfs")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1238455373]
 
@@ -78,27 +52,58 @@ text = "Плитка"
 layout_mode = 2
 text = "Стул"
 
-[node name="BaseFloor2" type="StaticBody3D" parent="." unique_id=1358498597]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.05, 3.05)
+[node name="TableButton" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer" unique_id=446133519]
+layout_mode = 2
+text = "Базовый стол"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseFloor2" unique_id=1000950729]
+[node name="Gizmo" type="MeshInstance3D" parent="." unique_id=267778524]
+visible = false
+mesh = SubResource("ImmediateMesh_o5qli")
+script = ExtResource("1_o5qli")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1047301828]
+transform = Transform3D(-0.76604444, 0.21984631, -0.6040228, 0, 0.9396926, 0.34202012, 0.64278764, 0.26200262, -0.7198463, -1.5, 4, -2.335)
+environment = SubResource("Environment_sugp2")
+
+[node name="Grid" type="MeshInstance3D" parent="." unique_id=1379704654]
+visible = false
+mesh = SubResource("ImmediateMesh_jyhfs")
+script = ExtResource("3_sugp2")
+
+[node name="BaseFloor" type="StaticBody3D" parent="." unique_id=311128667]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseFloor" unique_id=467028243]
 transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_sugp2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseFloor2" unique_id=494076348]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseFloor" unique_id=1391922154]
 transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_jyhfs")
 
-[node name="BaseFloor3" type="StaticBody3D" parent="." unique_id=1716038835]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 3.05, 2.05, 0)
+[node name="InstallationOfBlocks" parent="." unique_id=377349631 instance=ExtResource("4_jyhfs")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseFloor3" unique_id=1486680802]
+[node name="Wall" type="StaticBody3D" parent="." unique_id=1358498597]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.05, 3.05)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1000950729]
 transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_sugp2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseFloor3" unique_id=544758824]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=494076348]
+transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_jyhfs")
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1716038835]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 3.05, 2.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=1486680802]
+transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2" unique_id=544758824]
 transform = Transform3D(5.1, 0, 0, 0, 1, 0, 0, 0, 5.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_jyhfs")
 
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/TilesButton" to="." method="_on_tiles_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/ChairButton" to="." method="_on_chair_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/TableButton" to="." method="_on_table_button_pressed"]

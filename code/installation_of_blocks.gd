@@ -43,7 +43,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("mouse_del"):
 		if group.has("placeable"):
 			object.queue_free()
-
+	
+	if Input.is_action_just_pressed("rotate_left"):
+		if current_block:
+			current_block.rotation_degrees.y += 90
+	if Input.is_action_just_pressed("rotate_right"):
+		if current_block:
+			current_block.rotation_degrees.y -= 90
 
 func place_block() -> void:
 	if current_block:
@@ -89,7 +95,6 @@ func get_mouse_3d_pos():
 		#final_pos.y = hit_pos.y
 		final_pos.y = snapped(hit_pos.y, grid_y)
 	
-		
 		
 		type = collider.get_groups()
 	return {

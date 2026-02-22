@@ -5,6 +5,7 @@ extends Node
 enum type {
 	TILES_BASE,
 	CHAIR_BASE,
+	TABLE_BASE,
 }
 
 const blocks = {
@@ -15,7 +16,12 @@ const blocks = {
 	},
 	type.CHAIR_BASE: {
 		"name": "tiles_base",
-		"path": "res://scenes/blocks/base_chair.tscn", 
+		"path": "res://scenes/blocks/chair_base.tscn", 
 		"group": "chair_base",
+	},
+	type.TABLE_BASE: {
+		"name": "table_base",
+		"path": "res://scenes/blocks/table_base.tscn", 
+		"group": "table_base",
 	}
 }
