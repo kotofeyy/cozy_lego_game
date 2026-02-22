@@ -4,17 +4,18 @@ extends Node3D
 
 var build_delay = 0.11  # Пауза между блоками в секундах
 var build_timer = 0.0   # Текущий отсчет
-
+var type_current_block
 
 
 func _ready() -> void:
-	pass
+	type_current_block = tiles.get_groups()
 
 
 func _process(delta: float) -> void:
 	var info = get_mouse_3d_pos()
 	var pos = info["pos"]
 	var type = info["type"]
+	var object = info["collider"]
 	print("type - ", type)
 	if pos:
 		tiles.global_position = pos
@@ -24,10 +25,13 @@ func _process(delta: float) -> void:
 	if build_timer > 0:
 		build_timer -= delta
 	
-	if Input.is_action_pressed("mouse_action")and build_timer <= 0:
-		if not type.has("tiles"):
+	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
+		# чтобы плитки не ставились друг на друга, проверяю по группам
+		if not type==type_current_block:
 			place_block()
 			build_timer = build_delay # Сбрасываем таймер
+	if Input.is_action_just_pressed("mouse_del"):
+		object.queue_free()
 
 
 func place_block() -> void:
@@ -53,6 +57,7 @@ func get_mouse_3d_pos():
 	
 	var final_pos
 	var type
+	var collider
 	if result:
 		
 		var hit_pos = result.position
@@ -61,7 +66,7 @@ func get_mouse_3d_pos():
 		# Высота вашего полублока (замените на реальную, если она не 0.5)
 		var block_height = 1 
 		
-		var collider = result.collider
+		collider = result.collider
 
 		# Сдвигаем позицию на половину высоты ВДОЛЬ нормали
 		# Так блок всегда встанет ПОВЕРХ грани, а не внутрь
@@ -79,5 +84,6 @@ func get_mouse_3d_pos():
 		type = collider.get_groups()
 	return {
 		"pos": final_pos,
-		"type": type
+		"type": type,
+		"collider": collider
 	}
