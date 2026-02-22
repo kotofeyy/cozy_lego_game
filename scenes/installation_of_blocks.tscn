@@ -4,3 +4,5 @@
 
 [node name="InstallationOfBlocks" type="Node3D" unique_id=377349631]
 script = ExtResource("1_saun3")
+
+[node name="CurrentItem" type="Node" parent="." unique_id=56104754]

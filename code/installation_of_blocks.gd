@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var current_item: Node = $CurrentItem
 
 
 var build_delay = 0.11  # Пауза между блоками в секундах
@@ -13,7 +14,8 @@ func _ready() -> void:
 	var path = ItemTypes.blocks[ItemTypes.type.TILES_BASE]["path"]
 	var new_block: PackedScene = load(path)
 	current_block = new_block.instantiate()
-	add_child(current_block)
+	clear_current_item()
+	current_item.add_child(current_block)
 	group_of_current_block = current_block.get_groups()
 
 
@@ -34,9 +36,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
 		# чтобы плитки не ставились друг на друга, проверяю по группам
-		if not group==group_of_current_block:
+		if not group == group_of_current_block:
 			place_block()
 			build_timer = build_delay # Сбрасываем таймер
+
 	if Input.is_action_just_pressed("mouse_del"):
 		if group.has("placeable"):
 			object.queue_free()
@@ -67,28 +70,29 @@ func get_mouse_3d_pos():
 	var final_pos
 	var type
 	var collider
+
 	if result:
-		
 		var hit_pos = result.position
 		var hit_normal = result.normal # Вектор грани (например, Vector3.UP)
-		
-		# Высота вашего полублока (замените на реальную, если она не 0.5)
-		var block_height = 1 
 		
 		collider = result.collider
 
 		# Сдвигаем позицию на половину высоты ВДОЛЬ нормали
 		# Так блок всегда встанет ПОВЕРХ грани, а не внутрь
-		var block_size = current_block.scale
-		final_pos = hit_pos + (hit_normal * block_size * 0.5)
-			
-		# Применяем сетку (snapping)
-		# Если высота 0.5, то и шаг сетки по Y должен быть 0.5
+		var shape = current_block.get_node("CollisionShape3D").shape
+		var height = shape.size.y
+		final_pos = hit_pos + (hit_normal * height * 0.5)
+		var grid_y = 0.2
+
+		var surface_y = snapped(hit_pos.y, grid_y)
+
 		final_pos.x = snapped(final_pos.x, 1.0)
 		final_pos.z = snapped(final_pos.z, 1.0)
-		final_pos.y = snapped(final_pos.y, block_size.y) 
-			
-		# Проверка на дубликат через словарь (как обсуждали раньше)
+		final_pos.y = hit_pos.y
+		#final_pos.y = surface_y + height * 0.5
+		#final_pos.y = hit_pos.y + height * 0.5
+	
+		
 		
 		type = collider.get_groups()
 	return {
@@ -102,5 +106,12 @@ func change_block(block) -> void:
 	var path = ItemTypes.blocks[block]["path"]
 	var new_block: PackedScene = load(path)
 	current_block = new_block.instantiate()
-	add_child(current_block)
+	clear_current_item()
+	current_item.add_child(current_block)
 	group_of_current_block = current_block.get_groups()
+
+
+func clear_current_item() ->void:
+	var child = current_item.get_child(0)
+	if child:
+		child.queue_free()
