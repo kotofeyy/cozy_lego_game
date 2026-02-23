@@ -3,11 +3,12 @@
 [sub_resource type="BoxMesh" id="BoxMesh_saun3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saun3"]
-albedo_color = Color(0.6829495, 0.09444303, 0.4182262, 1)
+transparency = 1
+albedo_color = Color(0.68235296, 0.09411765, 0.41960785, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8c57"]
 
-[node name="Tiles" type="StaticBody3D" unique_id=1960273006 groups=["placeable", "tiles_base"]]
+[node name="Tiles" type="StaticBody3D" unique_id=1960273006 groups=["tiles_base"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=662253268]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.1, 0)

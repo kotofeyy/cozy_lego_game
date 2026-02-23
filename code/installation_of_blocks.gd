@@ -11,12 +11,6 @@ var current_block: StaticBody3D
 
 func _ready() -> void:
 	GlobalEvents.change_block.connect(change_block)
-	var path = ItemTypes.blocks[ItemTypes.type.TILES_BASE]["path"]
-	var new_block: PackedScene = load(path)
-	current_block = new_block.instantiate()
-	clear_current_item()
-	current_item.add_child(current_block)
-	group_of_current_block = current_block.get_groups()
 
 
 func _process(delta: float) -> void:
@@ -24,12 +18,12 @@ func _process(delta: float) -> void:
 	var pos = info["pos"]
 	var group = info["type"]
 	var object = info["collider"]
-
-	if pos and current_block:
-		current_block.global_position = pos
-		current_block.visible = true
-	else:
-		current_block.visible = false
+	if current_block:
+		if pos:
+			current_block.global_position = pos
+			current_block.visible = true
+		else:
+			current_block.visible = false
 
 	if build_timer > 0:
 		build_timer -= delta
@@ -37,19 +31,25 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
 		# чтобы плитки не ставились друг на друга, проверяю по группам
 		if not group == group_of_current_block:
+			draw_select_color(false)
 			place_block()
 			build_timer = build_delay # Сбрасываем таймер
+			draw_select_color(true)
 
 	if Input.is_action_just_pressed("mouse_del"):
-		if group.has("placeable"):
-			object.queue_free()
+		if group:
+			if group.has("placeable"):
+				object.queue_free()
 	
+	# вращение
 	if Input.is_action_just_pressed("rotate_left"):
 		if current_block:
 			current_block.rotation_degrees.y += 90
+			print("rotation - ", current_block.rotation_degrees)
 	if Input.is_action_just_pressed("rotate_right"):
 		if current_block:
 			current_block.rotation_degrees.y -= 90
+			print("rotation - ", current_block.rotation_degrees)
 
 func place_block() -> void:
 	if current_block:
@@ -68,8 +68,8 @@ func get_mouse_3d_pos():
 	# Параметры запроса к физике
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(from, to)
-	
-	query.exclude = [current_block.get_rid()] 
+	if current_block:
+		query.exclude = [current_block.get_rid()] 
 	
 	var result = space_state.intersect_ray(query)
 	
@@ -82,21 +82,22 @@ func get_mouse_3d_pos():
 		var hit_normal = result.normal # Вектор грани (например, Vector3.UP)
 		
 		collider = result.collider
-
-		var shape = current_block.get_node("CollisionShape3D").shape
-		var height = shape.size.y
-		final_pos = hit_pos + (hit_normal * height * 0.5)
-		var grid_y = 0.1
-
-	
-
-		final_pos.x = snapped(final_pos.x, 1.0)
-		final_pos.z = snapped(final_pos.z, 1.0)
-		#final_pos.y = hit_pos.y
-		final_pos.y = snapped(hit_pos.y, grid_y)
-	
+		if current_block:
+			var shape = current_block.get_node("CollisionShape3D").shape
+			var height = shape.size.y
+			final_pos = hit_pos + (hit_normal * height * 0.5)
+			var grid_y = 0.1
+			var grid_z = 0.5
+			var grid_x = 0.5
 		
-		type = collider.get_groups()
+
+			final_pos.x = snapped(final_pos.x, grid_x)
+			final_pos.z = snapped(final_pos.z, grid_z)
+			#final_pos.y = hit_pos.y
+			final_pos.y = snapped(hit_pos.y, grid_y)
+		
+			
+			type = collider.get_groups()
 	return {
 		"pos": final_pos,
 		"type": type,
@@ -110,6 +111,8 @@ func change_block(block) -> void:
 	current_block = new_block.instantiate()
 	clear_current_item()
 	current_item.add_child(current_block)
+	draw_select_color(true)
+	current_block.add_to_group("placeable")
 	group_of_current_block = current_block.get_groups()
 
 
@@ -117,3 +120,17 @@ func clear_current_item() ->void:
 	var child = current_item.get_child(0)
 	if child:
 		child.queue_free()
+
+
+func draw_select_color(enable: bool) -> void:
+	if current_block:
+		for child in current_block.get_children():
+			if child is MeshInstance3D:
+				var material: StandardMaterial3D = child.get_surface_override_material(0).duplicate()
+				if enable:
+					material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+					material.albedo_color.a = 0.6
+				else:
+					material.albedo_color.a = 1.0
+					material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+				child.set_surface_override_material(0, material)

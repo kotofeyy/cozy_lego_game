@@ -9,7 +9,7 @@
 
 [sub_resource type="Environment" id="Environment_sugp2"]
 background_mode = 1
-background_color = Color(0.60613686, 0.7824236, 0.56922394, 1)
+background_color = Color(0.7882984, 0.98293215, 0.8406789, 1)
 ssao_enabled = true
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_jyhfs"]
@@ -55,6 +55,10 @@ text = "Стул"
 [node name="TableButton" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer" unique_id=446133519]
 layout_mode = 2
 text = "Базовый стол"
+
+[node name="WindowBase" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer" unique_id=1167755476]
+layout_mode = 2
+text = "Окно базовое"
 
 [node name="Gizmo" type="MeshInstance3D" parent="." unique_id=267778524]
 visible = false
@@ -107,3 +111,4 @@ mesh = SubResource("BoxMesh_jyhfs")
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/TilesButton" to="." method="_on_tiles_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/ChairButton" to="." method="_on_chair_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/TableButton" to="." method="_on_table_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/WindowBase" to="." method="_on_window_base_pressed"]

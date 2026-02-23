@@ -9,7 +9,7 @@ albedo_color = Color(6.738305e-07, 0.29554427, 0.41360614, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pvg84"]
 
-[node name="TableBase" type="StaticBody3D" unique_id=815398388 groups=["placeable", "table_base"]]
+[node name="TableBase" type="StaticBody3D" unique_id=815398388 groups=["placeable"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2090906886]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.3996731, 0.50017285, 0)

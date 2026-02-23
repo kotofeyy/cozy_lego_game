@@ -5,9 +5,9 @@ extends Node3D
 
 #region вращение камеры
 var rotation_speed := 0.01
-var distance := 15.0
+var distance := 10.0
 var zoom_speed = 1.0
-var yaw := -2.3
+var yaw := -2.4
 var pitch := 0.6
 #endregion
 
@@ -68,3 +68,7 @@ func _on_chair_button_pressed() -> void:
 
 func _on_table_button_pressed() -> void:
 	GlobalEvents.change_block.emit(ItemTypes.type.TABLE_BASE)
+
+
+func _on_window_base_pressed() -> void:
+	GlobalEvents.change_block.emit(ItemTypes.type.WINDOW_BASE)
