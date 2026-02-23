@@ -7,6 +7,7 @@ var build_delay = 0.11  # Пауза между блоками в секунда
 var build_timer = 0.0   # Текущий отсчет
 var group_of_current_block
 var current_block: StaticBody3D
+var delete_mode := false
 
 
 func _ready() -> void:
@@ -29,18 +30,22 @@ func _process(delta: float) -> void:
 		build_timer -= delta
 	
 	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
-		# чтобы плитки не ставились друг на друга, проверяю по группам
-		if not group == group_of_current_block:
-			draw_select_color(false)
-			place_block()
-			build_timer = build_delay # Сбрасываем таймер
-			draw_select_color(true)
+		if get_viewport().gui_get_hovered_control():
+			return
+		
+		if delete_mode:
+			if group:
+				if group.has("placeable"):
+					object.queue_free()
+		else:
+			# чтобы плитки не ставились друг на друга, проверяю по группам
+			if not group == group_of_current_block:
+				draw_select_color(false)
+				place_block()
+				build_timer = build_delay # Сбрасываем таймер
+				draw_select_color(true)
 
-	if Input.is_action_just_pressed("mouse_del"):
-		if group:
-			if group.has("placeable"):
-				object.queue_free()
-	
+
 	# вращение
 	if Input.is_action_just_pressed("rotate_left"):
 		if current_block:
@@ -50,6 +55,7 @@ func _process(delta: float) -> void:
 		if current_block:
 			current_block.rotation_degrees.y -= 90
 			print("rotation - ", current_block.rotation_degrees)
+
 
 func place_block() -> void:
 	if current_block:
@@ -98,6 +104,7 @@ func get_mouse_3d_pos():
 		
 			
 			type = collider.get_groups()
+		type = collider.get_groups()
 	return {
 		"pos": final_pos,
 		"type": type,
@@ -106,14 +113,19 @@ func get_mouse_3d_pos():
 
 
 func change_block(block) -> void:
-	var path = ItemTypes.blocks[block]["path"]
-	var new_block: PackedScene = load(path)
-	current_block = new_block.instantiate()
-	clear_current_item()
-	current_item.add_child(current_block)
-	draw_select_color(true)
-	current_block.add_to_group("placeable")
-	group_of_current_block = current_block.get_groups()
+	if block == ItemTypes.type.REMOVE:
+		clear_current_item()
+		delete_mode = true
+	else:
+		delete_mode = false
+		var path = ItemTypes.Items[block]["path"]
+		var new_block: PackedScene = load(path)
+		current_block = new_block.instantiate()
+		clear_current_item()
+		current_item.add_child(current_block)
+		draw_select_color(true)
+		current_block.add_to_group("placeable")
+		group_of_current_block = current_block.get_groups()
 
 
 func clear_current_item() ->void:

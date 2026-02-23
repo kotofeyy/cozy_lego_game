@@ -56,19 +56,3 @@ func _update_camera_position():
 
 	camera_3d.position = target + offset
 	camera_3d.look_at(target)
-
-
-func _on_tiles_button_pressed() -> void:
-	GlobalEvents.change_block.emit(ItemTypes.type.TILES_BASE)
-
-
-func _on_chair_button_pressed() -> void:
-	GlobalEvents.change_block.emit(ItemTypes.type.CHAIR_BASE)
-
-
-func _on_table_button_pressed() -> void:
-	GlobalEvents.change_block.emit(ItemTypes.type.TABLE_BASE)
-
-
-func _on_window_base_pressed() -> void:
-	GlobalEvents.change_block.emit(ItemTypes.type.WINDOW_BASE)

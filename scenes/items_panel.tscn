@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bckxwetw2xpjv"]
+
+[ext_resource type="Script" uid="uid://471irrngblwd" path="res://code/items_panel.gd" id="1_8r8kv"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1553891261]
+script = ExtResource("1_8r8kv")
+
+[node name="Panel" type="Panel" parent="." unique_id=798646907]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 70.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1486470335]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=730442590]
+layout_mode = 2
