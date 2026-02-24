@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bnlgg6ay6n32r"]
 
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_dxlk0"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_x273q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxlk0"]
@@ -13,6 +15,7 @@ albedo_color = Color(1, 0.62352943, 0.36078432, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x273q"]
 
 [node name="KitchenCabinetBase" type="StaticBody3D" unique_id=1166271753]
+script = ExtResource("1_dxlk0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=591008985]
 transform = Transform3D(1.1, 0, 0, 0, 0.2, 0, 0, 0, 1.1, 0, 0.7, 0)

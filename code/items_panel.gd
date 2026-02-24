@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var h_box_container: HBoxContainer = $Panel/MarginContainer/HBoxContainer
+const HAMMER = preload("uid://rd2e3fb3mbye")
 
 const tiles_icon = preload("uid://c4ecwde2bx4wa")
 
@@ -32,6 +33,7 @@ func generate_buttons_for_panel() -> void:
 		button_del.size_flags_horizontal = Control.SIZE_SHRINK_END
 		button_del.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button_del.pressed.connect(on_click_to_button_del)
+		button_del.icon = HAMMER
 
 		for item: ItemTypes.type in items[category]:
 			var text = str(ItemTypes.Items[item]["name"])

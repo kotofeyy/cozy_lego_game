@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://5cthvugp28w5"]
 
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_331u8"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_vd4sg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_331u8"]
@@ -13,6 +15,7 @@ cull_mode = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_vd4sg"]
 
 [node name="WindowBase" type="StaticBody3D" unique_id=1930849982]
+script = ExtResource("1_331u8")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1837867256 groups=["window_base"]]
 transform = Transform3D(-0.2, 0, 1.7484556e-08, 0, 1, 0, -1.7484556e-08, 0, -0.2, 0.4, 1.5, -0.5)

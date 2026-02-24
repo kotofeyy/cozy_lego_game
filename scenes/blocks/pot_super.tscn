@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://3dc6f21lm3du"]
 
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_qnhif"]
 [ext_resource type="PackedScene" uid="uid://bd26k7dc8m2hk" path="res://models/pot_liefs_super.glb" id="1_vv0pb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qnhif"]
@@ -10,6 +11,7 @@ albedo_color = Color(0.999999, 0.5169393, 0.05090086, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4vmot"]
 
 [node name="PotSuper" type="StaticBody3D" unique_id=867192088]
+script = ExtResource("1_qnhif")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=884816109]
 transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)

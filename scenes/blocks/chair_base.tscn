@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://vgucamw4rpou"]
 
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_m81vv"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_j8c57"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nbdr"]
@@ -10,6 +12,7 @@ albedo_color = Color(1, 0.62352943, 0.36078432, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8fmr"]
 
 [node name="BaseChair" type="StaticBody3D" unique_id=690638999 groups=["chair_base"]]
+script = ExtResource("1_m81vv")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=363016249]
 transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.4, 0.5, 0.4)

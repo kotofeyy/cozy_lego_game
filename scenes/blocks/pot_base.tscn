@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://clbp4tkyfytgl"]
 
 [ext_resource type="PackedScene" uid="uid://cy6h5284gilsu" path="res://models/pot_leafs_base.glb" id="1_46hrt"]
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_mbuni"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u8i3h"]
 
@@ -10,6 +11,7 @@ albedo_color = Color(0.999999, 0.5169393, 0.05090086, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbuni"]
 
 [node name="PotBase" type="StaticBody3D" unique_id=244743492]
+script = ExtResource("1_mbuni")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1346067829]
 transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
@@ -20,5 +22,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_46hrt")
 transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_mbuni")
 
-[node name="pot_leafs_base" parent="." unique_id=1042237417 instance=ExtResource("1_46hrt")]
+[node name="pot_leafs_base" parent="." unique_id=1469739333 instance=ExtResource("1_46hrt")]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0.565, 0)

@@ -1,6 +1,8 @@
 extends Node3D
 
 @onready var current_item: Node = $CurrentItem
+@onready var sprite_3d: Sprite2D = $Sprite3D
+@onready var audio_hover: AudioStreamPlayer = $AudioHover
 
 
 var build_delay = 0.11  # Пауза между блоками в секундах
@@ -8,6 +10,7 @@ var build_timer = 0.0   # Текущий отсчет
 var group_of_current_block
 var current_block: StaticBody3D
 var delete_mode := false
+var old_material: StandardMaterial3D
 
 
 func _ready() -> void:
@@ -37,6 +40,7 @@ func _process(delta: float) -> void:
 			if group:
 				if group.has("placeable"):
 					object.queue_free()
+					audio_hover.play()
 		else:
 			# чтобы плитки не ставились друг на друга, проверяю по группам
 			if not group == group_of_current_block:
@@ -57,10 +61,20 @@ func _process(delta: float) -> void:
 			print("rotation - ", current_block.rotation_degrees)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if delete_mode:
+		var x = get_viewport().get_mouse_position().x
+		var y = get_viewport().get_mouse_position().y
+		sprite_3d.global_position = Vector2(x, y)
+	else:
+		sprite_3d.global_position = Vector2(-100, -100)
+
+
 func place_block() -> void:
 	if current_block:
 		var new_cube = current_block.duplicate()
 		add_child(new_cube)
+		audio_hover.play()
 
 
 func get_mouse_3d_pos():
@@ -88,6 +102,7 @@ func get_mouse_3d_pos():
 		var hit_normal = result.normal # Вектор грани (например, Vector3.UP)
 		
 		collider = result.collider
+			
 		if current_block:
 			var shape = current_block.get_node("CollisionShape3D").shape
 			var height = shape.size.y
@@ -104,6 +119,7 @@ func get_mouse_3d_pos():
 		
 			
 			type = collider.get_groups()
+
 		type = collider.get_groups()
 	return {
 		"pos": final_pos,

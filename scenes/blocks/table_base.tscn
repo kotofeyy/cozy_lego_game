@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b65tqwhmoa62e"]
 
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_wsb15"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdrar"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_uxtoc"]
@@ -10,6 +12,7 @@ albedo_color = Color(1, 0.62352943, 0.36078432, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pvg84"]
 
 [node name="TableBase" type="StaticBody3D" unique_id=815398388 groups=["placeable"]]
+script = ExtResource("1_wsb15")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2090906886]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.3996731, 0.50017285, 0)
