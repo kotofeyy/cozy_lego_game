@@ -8,6 +8,9 @@ enum type {
 	CHAIR_BASE,
 	TABLE_BASE,
 	WINDOW_BASE,
+	KITCHEN_CABINET_BASE,
+	POT_BASE,
+	POT_SUPER,
 }
 
 const Items = {
@@ -35,5 +38,20 @@ const Items = {
 		"name": "window_base",
 		"path": "res://scenes/blocks/window_base.tscn", 
 		"group": "table_base",
-	}
+	},
+	type.KITCHEN_CABINET_BASE: {
+		"name": "kitchen_cabinet_base",
+		"path": "res://scenes/blocks/kitchen_cabinet_base.tscn",
+		"group": "kitchen_kabinet_base"
+	},
+	type.POT_BASE: {
+		"name": "pot_base",
+		"path": "res://scenes/blocks/pot_base.tscn",
+		"group": "pot_base"
+	},
+	type.POT_SUPER: {
+		"name": "pot_super",
+		"path": "res://scenes/blocks/pot_super.tscn",
+		"group": "pot_super"
+	},
 }

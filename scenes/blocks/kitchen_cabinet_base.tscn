@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bnlgg6ay6n32r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x273q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxlk0"]
+albedo_color = Color(0.71011597, 0.35577112, 1.0588765e-06, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ek6e"]
+albedo_color = Color(1, 0.62352943, 0.36078432, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ecekw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x273q"]
+
+[node name="KitchenCabinetBase" type="StaticBody3D" unique_id=1166271753]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=591008985]
+transform = Transform3D(1.1, 0, 0, 0, 0.2, 0, 0, 0, 1.1, 0, 0.7, 0)
+mesh = SubResource("BoxMesh_x273q")
+surface_material_override/0 = SubResource("StandardMaterial3D_dxlk0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=107455777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_x273q")
+surface_material_override/0 = SubResource("StandardMaterial3D_0ek6e")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1812862678]
+transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 1.1, -0.3, 0.44000003, 0)
+mesh = SubResource("BoxMesh_ecekw")
+surface_material_override/0 = SubResource("StandardMaterial3D_dxlk0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769633074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_x273q")

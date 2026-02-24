@@ -17,10 +17,6 @@ func _ready() -> void:
 	pass 
 
 
-func _process(delta: float) -> void:
-	pass
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_released("ui_scroll_up"):

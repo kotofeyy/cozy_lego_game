@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://clbp4tkyfytgl"]
+
+[ext_resource type="PackedScene" uid="uid://cy6h5284gilsu" path="res://models/pot_leafs_base.glb" id="1_46hrt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8i3h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46hrt"]
+albedo_color = Color(0.999999, 0.5169393, 0.05090086, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbuni"]
+
+[node name="PotBase" type="StaticBody3D" unique_id=244743492]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1346067829]
+transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_u8i3h")
+surface_material_override/0 = SubResource("StandardMaterial3D_46hrt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1089115601]
+transform = Transform3D(0.4, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_mbuni")
+
+[node name="pot_leafs_base" parent="." unique_id=1042237417 instance=ExtResource("1_46hrt")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0.565, 0)

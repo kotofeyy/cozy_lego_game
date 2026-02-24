@@ -124,6 +124,7 @@ func change_block(block) -> void:
 		clear_current_item()
 		current_item.add_child(current_block)
 		draw_select_color(true)
+		current_block.add_to_group(ItemTypes.Items[block]["group"])
 		current_block.add_to_group("placeable")
 		group_of_current_block = current_block.get_groups()
 
