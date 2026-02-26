@@ -34,8 +34,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		# Ограничим угол, чтобы не переворачивалась камера
 		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
-		print("yaw - ", yaw)
-		print('pitch - ', pitch)
 		_update_camera_position()
 
 

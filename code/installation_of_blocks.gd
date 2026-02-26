@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 	if build_timer > 0:
 		build_timer -= delta
 	
+	
 	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
 		if get_viewport().gui_get_hovered_control():
 			return
@@ -51,8 +52,8 @@ func _process(delta: float) -> void:
 			if not group == group_of_current_block:
 				draw_select_color(false)
 				place_block()
-				build_timer = build_delay # Сбрасываем таймер
 				draw_select_color(true)
+				build_timer = build_delay # Сбрасываем таймер
 
 
 	# вращение
@@ -133,11 +134,13 @@ func get_mouse_3d_pos():
 			type = collider.get_groups()
 
 		type = collider.get_groups()
+
 	return {
 		"pos": final_pos,
 		"type": type,
 		"collider": collider
 	}
+
 
 
 func change_block(block) -> void:
@@ -174,18 +177,17 @@ func draw_select_color(enable: bool) -> void:
 			if child is MeshInstance3D:
 				var material: StandardMaterial3D = child.get_surface_override_material(0).duplicate()
 				if enable:
-					material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-					material.albedo_color.a = 0.6
+					material.emission_enabled = true
+					material.emission = Color.WHITE
+					material.emission_energy_multiplier = 0.3
 				else:
-					material.albedo_color.a = 1.0
-					material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+					material.emission_enabled = false
 				child.set_surface_override_material(0, material)
 
 
-func set_wallpaper_on_wall(wall: StaticBody3D) -> void:
+func set_wallpaper_on_wall(wall: StaticBody3D, color := Color.REBECCA_PURPLE) -> void:
 	for child in wall.get_children():
 			if child is MeshInstance3D:
 				var material: StandardMaterial3D = child.get_surface_override_material(0).duplicate()
-				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-				material.albedo_color = Color.REBECCA_PURPLE
+				material.albedo_color = color
 				child.set_surface_override_material(0, material)

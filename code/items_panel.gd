@@ -40,7 +40,10 @@ func generate_buttons_for_panel() -> void:
 
 		for item: ItemTypes.type in items[category]:
 			var text = str(ItemTypes.Items[item]["name"])
-			menu.get_popup().add_icon_radio_check_item(tiles_icon, text, item)
+			var texture = ColorRect.new()
+			texture.color = Color.AQUAMARINE
+			texture.size = Vector2(24, 24)
+			menu.get_popup().add_icon_radio_check_item(texture, text, item)
 			menu.get_popup().id_pressed.connect(on_item_pressed)
 
 
