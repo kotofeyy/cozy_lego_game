@@ -3,15 +3,20 @@
 [ext_resource type="Script" uid="uid://b470dfphpj4ds" path="res://code/installation_of_blocks.gd" id="1_saun3"]
 [ext_resource type="Texture2D" uid="uid://rd2e3fb3mbye" path="res://icons/hammer.png" id="2_j8c57"]
 [ext_resource type="AudioStream" uid="uid://dfobo3c0nw1lq" path="res://sounds/hover.wav" id="3_s8fmr"]
+[ext_resource type="Texture2D" uid="uid://cmo7x6vvp8ob5" path="res://icons/paint-roller.png" id="4_ym14e"]
 
 [node name="InstallationOfBlocks" type="Node3D" unique_id=377349631]
 script = ExtResource("1_saun3")
 
 [node name="CurrentItem" type="Node" parent="." unique_id=56104754]
 
-[node name="Sprite3D" type="Sprite2D" parent="." unique_id=757298417]
+[node name="Hammer" type="Sprite2D" parent="." unique_id=757298417]
 scale = Vector2(2, 2)
 texture = ExtResource("2_j8c57")
 
 [node name="AudioHover" type="AudioStreamPlayer" parent="." unique_id=1179380960]
 stream = ExtResource("3_s8fmr")
+
+[node name="PaintRoller" type="Sprite2D" parent="." unique_id=1096599321]
+scale = Vector2(2, 2)
+texture = ExtResource("4_ym14e")

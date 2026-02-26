@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var h_box_container: HBoxContainer = $Panel/MarginContainer/HBoxContainer
 const HAMMER = preload("uid://rd2e3fb3mbye")
+const PAINT_ROLLER = preload("uid://cmo7x6vvp8ob5")
 
 const tiles_icon = preload("uid://c4ecwde2bx4wa")
 
@@ -14,6 +15,8 @@ var items = {
 		ItemTypes.type.KITCHEN_CABINET_BASE,
 		ItemTypes.type.POT_BASE,
 		ItemTypes.type.POT_SUPER,
+		ItemTypes.type.KITCHEN_STOVE_BASE,
+		ItemTypes.type.WALLPAPER_BASE,
 	]
 }
 

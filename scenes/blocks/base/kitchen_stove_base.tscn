@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://deespb7tn5oiq"]
+
+[ext_resource type="Script" uid="uid://ch5ur1q7lwyne" path="res://code/hover_logic.gd" id="1_j25sc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ouhtv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouhtv"]
+albedo_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j25sc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh65k"]
+albedo_color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ubiab"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8fxm"]
+albedo_color = Color(0.24477637, 0.2447764, 0.24477637, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uh65k"]
+
+[node name="KitchenStoveBase" type="StaticBody3D" unique_id=1093442047]
+script = ExtResource("1_j25sc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1832210815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_ouhtv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ouhtv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1684947933]
+transform = Transform3D(0.8, 0, 0, 0, 0.55, 0, 0, 0, 1.1, 0, 0.41, 0)
+mesh = SubResource("BoxMesh_j25sc")
+surface_material_override/0 = SubResource("StandardMaterial3D_uh65k")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=905312999]
+transform = Transform3D(0.9, 0, 0, 0, 0.165, 0, 0, 0, 1.1, 0, 0.815, 0)
+mesh = SubResource("BoxMesh_j25sc")
+surface_material_override/0 = SubResource("StandardMaterial3D_uh65k")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1640446262]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -0.3, 0.53, 0.3)
+mesh = SubResource("BoxMesh_ubiab")
+surface_material_override/0 = SubResource("StandardMaterial3D_n8fxm")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=550891017]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.3, 0.53, 0.3)
+mesh = SubResource("BoxMesh_ubiab")
+surface_material_override/0 = SubResource("StandardMaterial3D_n8fxm")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1713499333]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -0.3, 0.53, -0.3)
+mesh = SubResource("BoxMesh_ubiab")
+surface_material_override/0 = SubResource("StandardMaterial3D_n8fxm")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=575496140]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.3, 0.53, -0.3)
+mesh = SubResource("BoxMesh_ubiab")
+surface_material_override/0 = SubResource("StandardMaterial3D_n8fxm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=364165882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_uh65k")

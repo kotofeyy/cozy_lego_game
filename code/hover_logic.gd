@@ -12,7 +12,7 @@ func _on_hover_on_item() -> void:
 		if child is MeshInstance3D:
 			var new_material = child.get_surface_override_material(0).duplicate()
 			new_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			new_material.albedo_color.a = 0.7
+			new_material.albedo_color.a = 0.8
 			child.set_surface_override_material(0, new_material)
 
 

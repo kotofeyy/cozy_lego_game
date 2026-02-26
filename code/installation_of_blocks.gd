@@ -1,8 +1,10 @@
 extends Node3D
 
 @onready var current_item: Node = $CurrentItem
-@onready var sprite_3d: Sprite2D = $Sprite3D
+@onready var sprite_3d: Sprite2D = $Hammer
+@onready var paint_roller: Sprite2D = $PaintRoller
 @onready var audio_hover: AudioStreamPlayer = $AudioHover
+
 
 
 var build_delay = 0.11  # Пауза между блоками в секундах
@@ -10,6 +12,7 @@ var build_timer = 0.0   # Текущий отсчет
 var group_of_current_block
 var current_block: StaticBody3D
 var delete_mode := false
+var wallpaper_mode := false
 var old_material: StandardMaterial3D
 
 
@@ -35,7 +38,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("mouse_action") and build_timer <= 0:
 		if get_viewport().gui_get_hovered_control():
 			return
-		
+		if wallpaper_mode:
+			if object:
+				set_wallpaper_on_wall(object)
 		if delete_mode:
 			if group:
 				if group.has("placeable"):
@@ -68,6 +73,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		sprite_3d.global_position = Vector2(x, y)
 	else:
 		sprite_3d.global_position = Vector2(-100, -100)
+	
+	if  wallpaper_mode:
+		var x = get_viewport().get_mouse_position().x
+		var y = get_viewport().get_mouse_position().y
+		paint_roller.global_position = Vector2(x, y)
+	else:
+		paint_roller.global_position = Vector2(-100, -100)
 
 
 func place_block() -> void:
@@ -129,20 +141,25 @@ func get_mouse_3d_pos():
 
 
 func change_block(block) -> void:
-	if block == ItemTypes.type.REMOVE:
-		clear_current_item()
-		delete_mode = true
+	var group = ItemTypes.Items[block]["group"]
+	if group == "wallpaper":
+		wallpaper_mode = true
 	else:
-		delete_mode = false
-		var path = ItemTypes.Items[block]["path"]
-		var new_block: PackedScene = load(path)
-		current_block = new_block.instantiate()
-		clear_current_item()
-		current_item.add_child(current_block)
-		draw_select_color(true)
-		current_block.add_to_group(ItemTypes.Items[block]["group"])
-		current_block.add_to_group("placeable")
-		group_of_current_block = current_block.get_groups()
+		wallpaper_mode = false
+		if block == ItemTypes.type.REMOVE:
+			clear_current_item()
+			delete_mode = true
+		else:
+			delete_mode = false
+			var path = ItemTypes.Items[block]["path"]
+			var new_block: PackedScene = load(path)
+			current_block = new_block.instantiate()
+			clear_current_item()
+			current_item.add_child(current_block)
+			draw_select_color(true)
+			current_block.add_to_group(group)
+			current_block.add_to_group("placeable")
+			group_of_current_block = current_block.get_groups()
 
 
 func clear_current_item() ->void:
@@ -162,4 +179,13 @@ func draw_select_color(enable: bool) -> void:
 				else:
 					material.albedo_color.a = 1.0
 					material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+				child.set_surface_override_material(0, material)
+
+
+func set_wallpaper_on_wall(wall: StaticBody3D) -> void:
+	for child in wall.get_children():
+			if child is MeshInstance3D:
+				var material: StandardMaterial3D = child.get_surface_override_material(0).duplicate()
+				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				material.albedo_color = Color.REBECCA_PURPLE
 				child.set_surface_override_material(0, material)
