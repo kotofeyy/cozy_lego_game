@@ -13,6 +13,7 @@ var group_of_current_block
 var current_block: StaticBody3D
 var delete_mode := false
 var wallpaper_mode := false
+var wallpaper_color: Color
 var old_material: StandardMaterial3D
 
 
@@ -67,7 +68,7 @@ func _process(delta: float) -> void:
 			print("rotation - ", current_block.rotation_degrees)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if delete_mode:
 		var x = get_viewport().get_mouse_position().x
 		var y = get_viewport().get_mouse_position().y
@@ -147,11 +148,15 @@ func change_block(block) -> void:
 	var group = ItemTypes.Items[block]["group"]
 	if group == "wallpaper":
 		wallpaper_mode = true
+		wallpaper_color = ItemTypes.Items[block]["color"]
+		if current_block:
+			clear_current_item()
 	else:
 		wallpaper_mode = false
 		if block == ItemTypes.type.REMOVE:
-			clear_current_item()
 			delete_mode = true
+			if current_block:
+				clear_current_item()
 		else:
 			delete_mode = false
 			var path = ItemTypes.Items[block]["path"]
@@ -166,9 +171,10 @@ func change_block(block) -> void:
 
 
 func clear_current_item() ->void:
-	var child = current_item.get_child(0)
-	if child:
-		child.queue_free()
+	if current_item.get_child_count() > 0:
+		var child = current_item.get_child(0)
+		if child:
+			child.queue_free()
 
 
 func draw_select_color(enable: bool) -> void:
@@ -185,9 +191,9 @@ func draw_select_color(enable: bool) -> void:
 				child.set_surface_override_material(0, material)
 
 
-func set_wallpaper_on_wall(wall: StaticBody3D, color := Color.REBECCA_PURPLE) -> void:
+func set_wallpaper_on_wall(wall: StaticBody3D) -> void:
 	for child in wall.get_children():
 			if child is MeshInstance3D:
 				var material: StandardMaterial3D = child.get_surface_override_material(0).duplicate()
-				material.albedo_color = color
+				material.albedo_color = wallpaper_color
 				child.set_surface_override_material(0, material)

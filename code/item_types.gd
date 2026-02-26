@@ -5,6 +5,9 @@ extends Node
 enum type {
 	REMOVE,
 	WALLPAPER_BASE,
+	WALLPAPER_BROWN,
+	WALLPAPER_CORAL,
+	WALLPAPER_CORNFLOWER_BLUE,
 	TILES_BASE,
 	CHAIR_BASE,
 	TABLE_BASE,
@@ -26,6 +29,24 @@ const Items = {
 		"path": null, 
 		"group": "wallpaper",
 		"color": Color.BISQUE
+	},
+	type.WALLPAPER_BROWN: {
+		"name": "wallpaper_brown",
+		"path": null, 
+		"group": "wallpaper",
+		"color": Color.BROWN
+	},
+	type.WALLPAPER_CORAL: {
+		"name": "wallpaper_coral",
+		"path": null, 
+		"group": "wallpaper",
+		"color": Color.CORAL
+	},
+	type.WALLPAPER_CORNFLOWER_BLUE: {
+		"name": "wallpaper_cornflower_blue",
+		"path": null, 
+		"group": "wallpaper",
+		"color": Color.CORNFLOWER_BLUE
 	},
 	type.TILES_BASE: {
 		"name": "tiles_base",
