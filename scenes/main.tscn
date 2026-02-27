@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wl18hnbefb5o" path="res://code/main.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://cnl7hrvarjc32" path="res://code/gizmo.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cev0uhk1um4b" path="res://scenes/camera_3d.gd" id="2_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bckxwetw2xpjv" path="res://scenes/items_panel.tscn" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://dnugijhfoy545" path="res://code/grid.gd" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://d1j2gh2xldmj" path="res://scenes/installation_of_blocks.tscn" id="4_jyhfs"]
@@ -58,6 +59,7 @@ script = ExtResource("1_0wfyh")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1047301828]
 transform = Transform3D(-0.76604444, 0.21984632, -0.6040228, 0, 0.9396927, 0.34202012, 0.64278764, 0.26200265, -0.7198463, -1.5, 4, -2.335)
 environment = SubResource("Environment_sugp2")
+script = ExtResource("2_o6xl0")
 
 [node name="CanvasLayer" parent="." unique_id=1553891261 instance=ExtResource("2_tbgi4")]
 

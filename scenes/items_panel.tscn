@@ -1,15 +1,64 @@
 [gd_scene format=3 uid="uid://bckxwetw2xpjv"]
 
 [ext_resource type="Script" uid="uid://471irrngblwd" path="res://code/items_panel.gd" id="1_8r8kv"]
+[ext_resource type="Theme" uid="uid://ct0wbu5p3fa8k" path="res://themes/tabs_inherit.tres" id="2_b2kte"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r8kv"]
+bg_color = Color(0.39933267, 0.61447716, 0.8604782, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1553891261]
 script = ExtResource("1_8r8kv")
 
-[node name="Panel" type="Panel" parent="." unique_id=798646907]
-anchors_preset = 10
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1082532033]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = -1
+anchor_top = 0.91600007
 anchor_right = 1.0
-offset_bottom = 70.0
+anchor_bottom = 1.0
+offset_top = 23.431946
 grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_b2kte")
+current_tab = 0
+
+[node name="Base" type="TabBar" parent="TabContainer" unique_id=60947500]
+layout_mode = 2
+theme = ExtResource("2_b2kte")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Base" unique_id=977259382]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Base/MarginContainer" unique_id=242478394]
+layout_mode = 2
+
+[node name="Wallpaper" type="TabBar" parent="TabContainer" unique_id=2042091295]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_b2kte")
+metadata/_tab_index = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=798646907]
+visible = false
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = -1
+anchor_top = 0.892
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.015991211
+offset_bottom = 0.00024414063
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8r8kv")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1486470335]
 layout_mode = 1

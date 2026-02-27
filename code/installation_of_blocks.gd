@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 			if not group == group_of_current_block:
 				draw_select_color(false)
 				place_block()
-				draw_select_color(true)
+				#draw_select_color(true)
 				build_timer = build_delay # Сбрасываем таймер
 
 
@@ -173,8 +173,7 @@ func change_block(block) -> void:
 func clear_current_item() ->void:
 	if current_item.get_child_count() > 0:
 		var child = current_item.get_child(0)
-		if child:
-			child.queue_free()
+		child.queue_free()
 
 
 func draw_select_color(enable: bool) -> void:

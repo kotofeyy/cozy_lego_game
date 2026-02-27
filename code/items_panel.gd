@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var h_box_container_base: HBoxContainer = $TabContainer/Base/MarginContainer/HBoxContainer
+
 @onready var h_box_container: HBoxContainer = $Panel/MarginContainer/HBoxContainer
 const HAMMER = preload("uid://rd2e3fb3mbye")
 const PAINT_ROLLER = preload("uid://cmo7x6vvp8ob5")
@@ -27,7 +29,15 @@ var items = {
 
 
 func _ready() -> void:
-	generate_buttons_for_panel()
+	generate_base_items()
+	#generate_buttons_for_panel()
+
+
+func generate_base_items() -> void:
+	for item in items["base"]:
+		var button = Button.new()
+		button.text = str(ItemTypes.Items[item]["name"])
+		h_box_container_base.add_child(button)
 
 
 func generate_buttons_for_panel() -> void:
